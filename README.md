@@ -27,6 +27,19 @@ Da dieses Projekt als Template eingerichtet ist, musst du es zunächst für dich
 1. Klicke oben rechts auf der GitHub-Webseite auf den grünen Button **"Use this template"** und wähle **"Create a new repository"**.
 2. Gib dem Projekt einen Namen (z.B. `backend-study-tasks-[DeinName]`) und erstelle das Repository auf deinem eigenen GitHub-Account.
 
+Damit ich deine Bearbeitung am Ende der Studie ausgewertet werden kann, muss ich Zugriff auf deinen geschriebenen Code haben. Du hast dafür zwei Möglichkeiten:
+
+**Option 1: Öffentliches Repository (Empfohlen & am einfachsten)**
+Belasse dein dupliziertes Repository beim Erstellen auf **Public**. Am Ende der Bearbeitungszeit musst du mir lediglich den Link zu deinem GitHub-Repository zukommen lassen.
+
+**Option 2: Privates Repository**
+Falls du deinen Code lieber privat halten möchtest, stelle das Repository auf **Private**. In diesem Fall musst du mich zwingend als Collaborator einladen, damit ich den Code lesen kann:
+1. Gehe in deinem Repository auf **Settings -> Collaborators**.
+2. Klicke auf **Add people**.
+3. Suche nach meinem GitHub-Namen: **sebfro13** und füge mich hinzu.
+4. Schicke mir am Ende der Studie den Link zu deinem Repository.
+
+
 ### 2. Projekt lokal klonen
 Öffne dein Terminal und klone **dein soeben erstelltes** Repository auf deinen Rechner:
 
