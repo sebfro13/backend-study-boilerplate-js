@@ -13,6 +13,7 @@ Dieses Repository dient als vorbereiteter Startpunkt (Boilerplate) für die anst
 
 Bevor du loslegst, stelle bitte sicher, dass folgende Programme auf deinem System installiert/vorhanden sind:
 * **Node.js** (inkl. npm) --> "node --version"
+    --> **WICHTIG: Bitte zwingend eine stabile LTS-Version (z. B. v20.x oder v22.x) nutzen!** Ungerade Versionen (wie v21 oder v23) sind experimentell und können beim Starten des Angular-Frontends zu Fehlern führen.
 * **Git** --> "git --version"
 * Ein Code-Editor deiner Wahl (empfohlen: **Visual Studio Code**)
 * Ein privater GitHub Account
@@ -42,9 +43,10 @@ Falls du deinen Code lieber privat halten möchtest, stelle das Repository auf *
 
 ### 2. Projekt lokal klonen
 Öffne dein Terminal und klone **dein soeben erstelltes** Repository auf deinen Rechner:
+(Stelle sicher, dass du in dem Verzeichnis bist wohin es gespeichert werden soll)
 
 ```bash
-git clone [https://github.com/](https://github.com/)[DEIN_GITHUB_NAME]/[DEIN_REPO_NAME].git
+git clone https://github.com/[DEIN_GITHUB_NAME]/[DEIN_REPO_NAME].git
 cd [DEIN_REPO_NAME]
 ```
 
@@ -83,12 +85,14 @@ Um die Applikation vollständig zu nutzen, müssen Frontend und Backend parallel
 **Terminal 1 (Backend starten):**
 ```bash
 cd CodeTasks/backend
+npm run build  # (Nur beim ersten mal oder nach Änderungen notwendig)
 npm start      # (Oder der entsprechende Start-Befehl für die Tasks)
 ```
 
 **Terminal 2 (Frontend starten):**
 ```bash
 cd CodeTasks/frontend
+npm run build  # (Nur beim ersten mal oder nach Änderungen notwendig)
 npm start
 ```
 
