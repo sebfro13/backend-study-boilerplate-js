@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppraisalService } from './services/appraisal.service';
@@ -24,18 +24,18 @@ export class AppComponent implements OnInit {
 
   // ── Aufgabe 1 ──────────────────────────────────────────────────────────────
   roles = Object.values(UserRole);
-  selectedRole: UserRole = UserRole.CHECK_IN;
-  appraisalData: AppraisalData | null = null;
+  selectedRole: WritableSignal<UserRole> = signal(UserRole.CHECK_IN);
+  appraisalData: WritableSignal<AppraisalData | null> = signal(null);
 
   // ── Aufgabe 2 ──────────────────────────────────────────────────────────────
   fin: string = '';
-  documents: DocumentInfo[] = [];
-  documentsLoaded = false;
+  documents: WritableSignal<DocumentInfo[]> = signal([]);
+  documentsLoaded = signal(false);
 
   constructor(
     private appraisalService: AppraisalService,
     private documentService: DocumentService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -43,12 +43,12 @@ export class AppComponent implements OnInit {
 
   onRoleChange(event: Event): void {
     const value = (event.target as HTMLSelectElement).value as UserRole;
-    this.selectedRole = value;
+    this.selectedRole.set(value);
     this.loadData();
   }
 
   onAction(action: AppraisalAction): void {
-    this.appraisalService.performAction(action, this.selectedRole).subscribe({
+    this.appraisalService.performAction(action, this.selectedRole()).subscribe({
       next: (result) => {
         if (!result.success) {
           alert(result.message);
@@ -70,8 +70,8 @@ export class AppComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.appraisalService.loadAppraisal(this.selectedRole).subscribe({
-      next: (data) => (this.appraisalData = data),
+    this.appraisalService.loadAppraisal(this.selectedRole()).subscribe({
+      next: (data) => (this.appraisalData.set(data)),
       error: () => console.error('Fehler beim Laden der Daten.'),
     });
   }
@@ -84,8 +84,8 @@ export class AppComponent implements OnInit {
     }
     this.documentService.listDocuments(this.fin.trim()).subscribe({
       next: (docs) => {
-        this.documents = docs;
-        this.documentsLoaded = true;
+        this.documents.set(docs);
+        this.documentsLoaded.set(true);
       },
       error: () => alert('Fehler beim Laden der Dokumente.'),
     });
